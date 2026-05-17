@@ -371,6 +371,16 @@ If you find VibeScan useful, please consider giving it a star on GitHub!
 
 ---
 
+## 📸 Screenshots
+
+| Feature | Screenshot |
+|---------|------------|
+| Terminal Output | ![Terminal Output](screenshots/terminal_output.png) |
+| HTML Report | ![HTML Report](screenshots/html_report.png) |
+| Team Dashboard | ![Dashboard](screenshots/dashboard.png) |
+
+---
+
 **Built with ❤️ for secure coding practices**
 
 *VibeScan - Because AI-generated code deserves AI-aware security*
