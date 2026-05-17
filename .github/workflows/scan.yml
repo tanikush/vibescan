@@ -3,13 +3,13 @@ name: VibeScan Security Check
 on:
   push:
     branches: [main, master, develop]
+
   pull_request:
     branches: [main, master]
 
 jobs:
   security-scan:
     runs-on: ubuntu-latest
-    name: Scan for secrets & vibe code issues
 
     steps:
       - name: Checkout code
@@ -18,17 +18,17 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13'
+          python-version: "3.13"
 
       - name: Install VibeScan
         run: pip install -e .
 
       - name: Run VibeScan
-        run: vibescan scan . --output -o report.html
+        run: vibescan scan vibescan --output report.html
 
       - name: Upload Report
-        if: always()
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: vibescan-report
           path: report.html
