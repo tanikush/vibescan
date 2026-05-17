@@ -4,7 +4,7 @@
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Code style: professional](https://img.shields.io/badge/code%20style-professional-brightgreen.svg)](https://github.com/yourusername/vibescan)
+[![GitHub Release](https://img.shields.io/github/v/release/tanikush/vibescan)](https://github.com/tanikush/vibescan/releases)
 
 VibeScan detects security vulnerabilities specifically introduced by AI coding tools (Cursor, Claude, GitHub Copilot) — patterns that traditional tools like GitLeaks and TruffleHog miss.
 
@@ -71,7 +71,7 @@ The rise of "vibe coding" in 2025 has created a new security challenge:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/vibescan.git
+git clone https://github.com/tanikush/vibescan.git
 cd vibescan
 
 # Install dependencies
@@ -169,9 +169,10 @@ VibeScan uses a **3-layer detection system**:
 
 ## 🔗 GitHub Actions Integration
 
-Create `.github/workflows/vibescan.yml`:
+The `.github/workflows/scan.yml` file is already configured. To use it:
 
 ```yaml
+# File: .github/workflows/scan.yml
 name: VibeScan Security Check
 
 on:
@@ -185,21 +186,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      
-      - name: Install VibeScan
-        run: |
-          pip install -r requirements.txt
-          pip install -e .
-      
-      - name: Run Security Scan
-        run: vibescan scan . --fail-on-critical --output report.html
-      
-      - name: Upload Report
-        uses: actions/upload-artifact@v3
+      - run: pip install -e .
+      - run: vibescan scan . --fail-on-critical --output report.html
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: security-report
@@ -284,7 +276,7 @@ Test VibeScan with the included vulnerable sample:
 # Scan demo vulnerable file
 vibescan scan tests/fixtures/vulnerable_app.py
 
-# Expected: 7 CRITICAL, 5 HIGH, 3 MEDIUM issues
+# Expected: 5 CRITICAL, 4 HIGH issues detected
 ```
 
 ---
