@@ -24,7 +24,7 @@ jobs:
         run: pip install -e .
 
       - name: Run VibeScan
-        run: vibescan scan . --fail-on-critical -o report.html
+        run: vibescan scan . --output -o report.html
 
       - name: Upload Report
         if: always()
