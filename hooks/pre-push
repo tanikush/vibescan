@@ -1,0 +1,23 @@
+#!/bin/sh
+# VibeScan pre-push hook
+# This script runs before every git push
+
+echo "[ VibeScan ] Scanning for security issues before push..."
+
+# Run VibeScan scanner
+vibescan scan . --fail-on-critical
+
+# Check exit code
+RESULT=$?
+
+if [ $RESULT -ne 0 ]; then
+    echo ''
+    echo 'PUSH BLOCKED'
+    echo 'CRITICAL security issues found!'
+    echo 'Fix the issues before pushing to remote.'
+    echo ''
+    exit 1
+fi
+
+echo '[ VibeScan ] OK All clear! Proceeding with push.'
+exit 0

@@ -1,0 +1,14 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.vibescan_baseline.json
+report.html
+results.json
+*.log
+.DS_Store
+.vscode/
+.idea/

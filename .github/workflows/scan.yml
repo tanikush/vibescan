@@ -1,0 +1,34 @@
+name: VibeScan Security Check
+
+on:
+  push:
+    branches: [main, master, develop]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    name: Scan for secrets & vibe code issues
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install VibeScan
+        run: pip install -e .
+      
+      - name: Run VibeScan
+        run: vibescan scan . --fail-on-critical --output report.html
+      
+      - name: Upload Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: vibescan-report
+          path: report.html
