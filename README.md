@@ -337,10 +337,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support & Contact
 
-- **Issues:** [GitHub Issues](https://github.com/yourusername/vibescan/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/yourusername/vibescan/discussions)
-- **Email:** your.email@example.com
-- **LinkedIn:** [Your Profile](https://linkedin.com/in/yourprofile)
+- **Issues:** [GitHub Issues](https://github.com/tanikush/vibescan/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/tanikush/vibescan/discussions)
+- **LinkedIn:** [Your Profile](https://www.linkedin.com/in/tanisha-kushwah-280944284/)
 
 ---
 
