@@ -23,6 +23,10 @@ The rise of "vibe coding" in 2025 has created a new security challenge:
 
 ---
 
+## 🏗️ Architecture
+
+<img width="1254" height="1254" alt="image" src="https://github.com/user-attachments/assets/fcf3600d-8ce3-41f1-8e90-7c5bc34d94fc" />
+
 ## ✨ Features
 
 ### Core Capabilities
@@ -48,6 +52,13 @@ The rise of "vibe coding" in 2025 has created a new security challenge:
 | Setup Complexity | Medium | Medium | High | Low |
 
 ---
+## 📸 Result Screenshots
+
+| Feature | Screenshot |
+|---------|------------|
+| Terminal Output | ![Terminal Output](screenshots/terminal_output.png) |
+| HTML Report | ![HTML Report](screenshots/html_report.png) |
+| Team Dashboard | ![Dashboard](screenshots/dashboard.png) |
 
 ## 📦 Installation
 
@@ -263,29 +274,6 @@ git push origin main
 
 ---
 
-## 🏗️ Architecture
-
-```
-┌─────────────┐
-│   INPUT     │  Git repo / folder / file
-└──────┬──────┘
-       │
-       ▼
-┌─────────────────────────────────┐
-│     SCANNER ENGINE              │
-│  1. File Collector              │
-│  2. Regex Pattern Matcher       │
-│  3. Shannon Entropy Calculator  │
-│  4. AI Pattern Detector         │
-│  5. Risk Scorer                 │
-└──────┬──────────────────────────┘
-       │
-       ▼
-┌─────────────┐
-│   OUTPUT    │  Terminal / HTML / JSON
-└─────────────┘
-```
-
 ---
 
 ## 🧪 Testing
@@ -343,15 +331,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 🗺️ Roadmap
-
-### Version 2.0 (Planned)
-- [ ] Token validity verification (check if secrets are active)
-- [ ] Auto-fix suggestions with safe code snippets
-- [ ] PR comment bot for GitHub
-- [ ] False positive reduction with allowlists
-- [ ] Security score dashboard (0-100)
-- [ ] VS Code extension
 
 ---
 
@@ -371,16 +350,9 @@ If you find VibeScan useful, please consider giving it a star on GitHub!
 
 ---
 
-## 📸 Screenshots
-
-| Feature | Screenshot |
-|---------|------------|
-| Terminal Output | ![Terminal Output](screenshots/terminal_output.png) |
-| HTML Report | ![HTML Report](screenshots/html_report.png) |
-| Team Dashboard | ![Dashboard](screenshots/dashboard.png) |
 
 ---
-
+BY TANISHA KUSHWAH
 **Built with ❤️ for secure coding practices**
 
 *VibeScan - Because AI-generated code deserves AI-aware security*
