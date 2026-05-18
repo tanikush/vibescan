@@ -1,4 +1,4 @@
-# DEMO — intentionally vulnerable app for GIF recording
+# DEMO APP — insecure sample for VibeScan
 import os, sqlite3, yaml, subprocess, random
 
 # CRITICAL — hardcoded secrets
@@ -7,7 +7,7 @@ AWS_SECRET = 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
 OPENAI_KEY = 'sk-proj-abcdefghijklmnopqrstuvwxyz1234567890ABCDEF'
 DB_URL     = 'postgresql://admin:password123@localhost:5432/myapp'
 
-# HIGH — debug on
+# HIGH
 DEBUG = True
 
 # CRITICAL — SQL injection
@@ -16,7 +16,7 @@ def get_user(user_id):
     query = f'SELECT * FROM users WHERE id = {user_id}'
     return conn.execute(query).fetchone()
 
-# HIGH — password in log
+# HIGH
 def login(username, password):
     print(f'Login: {username} / {password}')
 
@@ -32,6 +32,6 @@ def run_cmd(cmd):
 def load_config(data):
     return yaml.load(data)
 
-# HIGH — random module
+# HIGH — weak random
 def gen_token():
     return str(random.random())

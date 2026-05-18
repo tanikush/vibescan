@@ -64,7 +64,7 @@ The rise of "vibe coding" in 2025 has created a new security challenge:
 
 Watch VibeScan in action:
 
-[Vibescan.mp4](https://github.com/tanikush/vibescan/raw/main/docs/Vibescan.mp4) | [Vibescan2.mp4](https://github.com/tanikush/vibescan/raw/main/docs/Vibescan2.mp4)
+[Vibescan v1 Demo](docs/v1.mp4) | [Vibescan v2 Demo](docs/v2.mp4)
 
 The demo shows:
 - Real-time security scanning
