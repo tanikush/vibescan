@@ -62,24 +62,17 @@ The rise of "vibe coding" in 2025 has created a new security challenge:
 
 ## 🎬 Demo Video
 
-> **Note:** GitHub README preview does not embed large video files. Download or watch below:
+### Vibescan v2 — Complete Feature Demo
+<a href="https://youtu.be/YOUR_V2_LINK" target="_blank">
+  <img src="https://img.youtube.com/vi/YOUR_V2_LINK/maxresdefault.jpg" width="640" alt="VibeScan v2 Demo">
+</a>
+*Scanner | Validator | Fixer | PR Bot | Dashboard — full v2 walkthrough*
 
-### 📥 Direct Download
-| Version | Size | Link |
-|---------|------|------|
-| v1 — Full Demo | 56 MB | [⬇️ Download v1.mp4](docs/v1.mp4) |
-| v2 — v2 Features | 5.5 MB | [⬇️ Download v2.mp4](docs/v2.mp4) |
-
-### 🖼️ Live Demo GIF
-![VibeScan Demo GIF](screenshots/demo.gif)
-
-*Terminal output — 9 CRITICAL + 5 HIGH findings detected in seconds*
-
-### 📺 YouTube (Recommended for streaming)
-> Upload the MP4 files to YouTube and paste the link here for full embedded playback:
-> ```markdown
-> [![Watch on YouTube](https://img.shields.io/youtube/views/VIDEO_ID?style=social)](https://youtu.be/VIDEO_ID)
-> ```
+### Vibescan v1 — Core Scanner Demo
+<a href="https://youtu.be/YOUR_V1_LINK" target="_blank">
+  <img src="https://img.youtube.com/vi/YOUR_V1_LINK/maxresdefault.jpg" width="640" alt="VibeScan v1 Demo">
+</a>
+*Secret detection | Entropy analysis | Git hooks | HTML reports*
 
 ## 📦 Installation
 
