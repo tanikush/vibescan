@@ -4,9 +4,9 @@ setup(
     name='vibescan',
     version='1.0.0',
     description='Security scanner for AI-generated (vibe-coded) code',
-    author='Your Name',
-    author_email='your@email.com',
-    url='https://github.com/yourusername/vibescan',
+    author='Tanisha Kushwah',
+    author_email='tanikush@example.com',
+    url='https://github.com/tanikush/vibescan',
     packages=find_packages(),
     install_requires=[
         'click>=8.0',
