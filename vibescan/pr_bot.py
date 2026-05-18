@@ -48,6 +48,11 @@ def build_comment(findings, files_scanned: int) -> str:
     return '\n'.join(lines)
 
 
+def get_github_repo():
+    """Get current repo in owner/repo format"""
+    return os.getenv('GITHUB_REPOSITORY', '')
+
+
 def post_pr_comment(repo: str, pr_number: int, comment: str) -> bool:
     url = f'https://api.github.com/repos/{repo}/issues/{pr_number}/comments'
     r = requests.post(url, headers=get_headers(), json={'body': comment})
