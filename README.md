@@ -57,13 +57,15 @@ vibescan scan . -o report.html
 
 ---
 
-## Screenshots
+## 📸 Screenshots
 
-| Terminal Output | HTML Report | Security Dashboard |
-|----------------|-------------|-------------------|
-| ![Terminal Output](screenshots/terminal_output.png) | ![HTML Report](screenshots/html_report.png) | ![Dashboard](screenshots/dashboard.png) |
+| Feature | Image |
+|--------|-------|
+| Terminal Output | <img src="screenshots/terminal_output.png" width="400"/> |
+| HTML Report | <img src="screenshots/html_report.png" width="400"/> |
+| Security Dashboard | <img src="screenshots/dashboard.png" width="400"/> |
 
----
+
 
 ## Demo
 
