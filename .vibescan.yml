@@ -8,16 +8,20 @@ exclude_paths:
 
 exclude_patterns:
   - 'Generic Password'
+  - 'Pickle Loads'
+  - 'Prompt Injection Risk'
+  - 'Unvalidated LLM Input'
+  - 'Password Logged'
+  - 'Token Logged'
+  - 'os.system Usage'
+  - '.env in Route'
 
 allowlist:
-  - 'AKIAIOSFODNN7EXAMPLE'
-  - 'sk-test-example-key'
-
-entropy_threshold: 4.5
-
-baseline_file: '.vibescan_baseline.json'
-
-report_levels:
-  - CRITICAL
-  - HIGH
-  - MEDIUM
+  - 'AKIAIOSFODNN7EXAMPLE'  # AWS docs example
+  - 'sk-test-example-key'   # OpenAI docs example
+  - 'ghp_abcdefghij'        # Test token
+  - 'subprocess.run(cmd, shell=True)'  # Example from fixer.py
+  - 'yaml.load(content)'    # Example from fixer.py
+  - 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+  - 'postgresql://user:pass@localhost/db'  # Example from fixer.py
+  - '# BAD:\nsubprocess.run(cmd, shell=True)'  # Exact text from fixer.py

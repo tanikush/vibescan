@@ -6,9 +6,10 @@ from .rules.secrets import SECRET_PATTERNS
 from .rules.vibe_patterns import VIBE_PATTERNS
 from .rules.entropy import find_high_entropy_strings
 from .rules.ai_risk_patterns import AI_RISK_PATTERNS
+from .config import VibeScanConfig
 
-SKIP_EXTENSIONS = {'.jpg', '.png', '.gif', '.svg', '.ico', '.pdf', '.zip', '.tar', '.gz', '.lock'}
-SKIP_DIRS = {'node_modules', '.git', 'venv', '__pycache__', 'dist', 'build', '.next'}
+SKIP_EXTENSIONS = {'.jpg', '.png', '.gif', '.svg', '.ico', '.pdf', '.zip', '.tar', '.gz', '.lock', '.pyc', '.pyo'}
+SKIP_DIRS = {'node_modules', '.git', 'venv', '__pycache__', 'dist', 'build', '.next', '.eggs', 'vibescan.egg-info'}
 
 class Finding:
     '''Represents a single security finding'''
@@ -36,6 +37,7 @@ class VibeScan:
         self.include_vibe = include_vibe
         self.findings: List[Finding] = []
         self.files_scanned = 0
+        self.config = VibeScanConfig()
     
     def scan(self) -> List[Finding]:
         '''Entry point - scan folder or file for security issues'''
@@ -54,7 +56,16 @@ class VibeScan:
                 if filepath.suffix not in SKIP_EXTENSIONS:
                     self._scan_file(filepath)
     
+    def _is_filtered(self, filepath: Path) -> bool:
+        """Check if file should be filtered based on config"""
+        str_path = str(filepath)
+        if self.config.should_skip_path(str_path):
+            return True
+        return False
+    
     def _scan_file(self, filepath: Path):
+        if self._is_filtered(filepath):
+            return
         try:
             content = filepath.read_text(encoding='utf-8', errors='ignore')
             self.files_scanned += 1
@@ -73,13 +84,21 @@ class VibeScan:
             pattern_name, regex, risk = pattern_data[:3]
             description = pattern_data[3] if len(pattern_data) > 3 else ''
             
+            # Skip excluded patterns
+            if self.config.should_skip_pattern(pattern_name):
+                continue
+            
             for line_no, line in enumerate(lines, 1):
-                                match = re.search(regex, line)
-                                if match:
-                                    self.findings.append(Finding(
+                            match = re.search(regex, line)
+                            if match:
+                                matched_text = match.group()
+                                # Skip allowlisted
+                                if self.config.is_allowlisted(matched_text):
+                                    continue
+                                self.findings.append(Finding(
                                     filepath, line_no, pattern_name,
-                                        match.group(), risk, description
-                    ))
+                                        matched_text, risk, description
+                            ))
     
     def _apply_entropy(self, filepath, content):
         for secret, score in find_high_entropy_strings(content):
