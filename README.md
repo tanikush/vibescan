@@ -22,6 +22,36 @@ AI coding tools are everywhere in 2025. But 45% of AI-generated code contains se
 
 ---
 
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                           VibeScan                                   │
+│              AI-Generated Code Security Scanner                     │
+└─────────────────────────────────────────────────────────────────────┘
+                                │
+        ┌───────────────────────┼───────────────────────┐
+        │                       │                       │
+┌───────▼───────┐       ┌───────▼───────┐       ┌───────▼───────┐
+│   INPUT       │       │  SCANNER      │       │   OUTPUT       │
+│               │       │               │       │                │
+│ Git repo      │─────►│ Layer 1:      │─────►│ Terminal       │
+│ Folder        │       │   Regex       │       │   Report       │
+│ File          │       │   (300+        │       │                │
+│ .env          │       │   patterns)   │       │ HTML Report    │
+└───────────────┘       │               │       │                │
+                        │ Layer 2:      │       │ JSON Export    │
+                        │   Shannon     │       │                │
+                        │   Entropy     │       │ Dashboard      │
+                        │               │       │ (0-100 score)  │
+                        │ Layer 3:      │       │                │
+                        │   AI Patterns │       │ PR Comment     │
+                        │               │       │ (GitHub Bot)   │
+                        └───────────────┘       └────────────────┘
+```
+
+---
+
 ## Features
 
 | | |
@@ -56,21 +86,29 @@ Output: `File | Line | Issue | Risk | Match`
 
 ---
 
+## Screenshots
+
+| Terminal Output | HTML Report | Security Dashboard |
+|----------------|-------------|-------------------|
+| ![Terminal Output](screenshots/terminal_output.png) | ![HTML Report](screenshots/html_report.png) | ![Dashboard](screenshots/dashboard.png) |
+
+---
+
 ## How It Works
 
 ```
 Input: Project files / .env / Git repo
         │
         ├─► Layer 1: Regex (300+ patterns)
-        │   AWS keys, OpenAI tokens, DB URLs…
+        │   AWS keys, OpenAI tokens, DB URLs, Stripe, JWT…
         │
         ├─► Layer 2: Shannon Entropy
-        │   Mathematical score — finds unknown tokens
+        │   H = -Σ(p × log₂(p)) — finds high-entropy unknown tokens
+        │   Score ≥ 4.5 = likely secret
         │
         └─► Layer 3: AI-Specific Patterns
             SQL injection · eval() · debug mode · CORS wildcards
-
-Output: Terminal table · HTML report · JSON · PR comment
+            Missing auth · pickle.loads · Path traversal
 ```
 
 ---
@@ -104,6 +142,9 @@ vibescan scan . --no-vibe
 
 # Fail exit code 1 on CRITICAL (CI/CD)
 vibescan scan . --fail-on-critical
+
+# Verify if detected secrets are live or revoked
+vibescan scan . --validate
 ```
 
 ---
@@ -129,6 +170,7 @@ Missing authentication · SQL injection · Hardcoded credentials · Debug mode i
 | SQL injection check | ❌ | ✅ |
 | Auto-fix suggestions | ❌ | ✅ |
 | GitHub Actions | ❌ | ✅ |
+| Security Dashboard | ❌ | ✅ |
 | Cost | Free | Free |
 
 ---
