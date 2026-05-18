@@ -60,6 +60,18 @@ The rise of "vibe coding" in 2025 has created a new security challenge:
 | HTML Report | ![HTML Report](screenshots/html_report.png) |
 | Team Dashboard | ![Dashboard](screenshots/dashboard.png) |
 
+## 🎬 Demo Video
+
+Watch VibeScan in action:
+
+[Vibescan.mp4](https://github.com/tanikush/vibescan/raw/main/docs/Vibescan.mp4) | [Vibescan2.mp4](https://github.com/tanikush/vibescan/raw/main/docs/Vibescan2.mp4)
+
+The demo shows:
+- Real-time security scanning
+- Detection of AWS keys, SQL injection, debug mode
+- 7 CRITICAL + 2 HIGH findings detected
+- HTML dashboard generation
+
 ## 📦 Installation
 
 ### Prerequisites
