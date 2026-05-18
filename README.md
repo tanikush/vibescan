@@ -62,15 +62,17 @@ The rise of "vibe coding" in 2025 has created a new security challenge:
 
 ## 🎬 Demo Video
 
-Watch VibeScan in action:
+Watch VibeScan in action (GitHub par embed):
 
-[Vibescan v1 Demo](docs/v1.mp4) | [Vibescan v2 Demo](docs/v2.mp4)
+### Vibescan v2 Demo
+<video src="https://github.com/tanikush/vibescan/raw/main/docs/v2.mp4" controls width="720"></video>
 
-The demo shows:
-- Real-time security scanning
-- Detection of AWS keys, SQL injection, debug mode
-- 7 CRITICAL + 2 HIGH findings detected
-- HTML dashboard generation
+*Detection of AWS keys, OpenAI tokens, SQL injection, debug mode — 9 CRITICAL + 5 HIGH findings*
+
+### Vibescan v1 Demo
+<video src="https://github.com/tanikush/vibescan/raw/main/docs/v1.mp4" controls width="720"></video>
+
+*How VibeScan works — live CLI output + HTML report + team dashboard*
 
 ## 📦 Installation
 
