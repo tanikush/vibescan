@@ -63,14 +63,14 @@ The rise of "vibe coding" in 2025 has created a new security challenge:
 ## 🎬 Demo Video
 
 ### Vibescan v2 — Complete Feature Demo
-<a href="https://youtu.be/YOUR_V2_LINK" target="_blank">
-  <img src="https://img.youtube.com/vi/YOUR_V2_LINK/maxresdefault.jpg" width="640" alt="VibeScan v2 Demo">
+<a href="https://youtu.be/yc_Ud2gm5Zs" target="_blank">
+  <img src="https://img.youtube.com/vi/yc_Ud2gm5Zs/maxresdefault.jpg" width="640" alt="VibeScan v2 Demo">
 </a>
 *Scanner | Validator | Fixer | PR Bot | Dashboard — full v2 walkthrough*
 
 ### Vibescan v1 — Core Scanner Demo
-<a href="https://youtu.be/YOUR_V1_LINK" target="_blank">
-  <img src="https://img.youtube.com/vi/YOUR_V1_LINK/maxresdefault.jpg" width="640" alt="VibeScan v1 Demo">
+<a href="https://youtu.be/us6Efr1zF1U" target="_blank">
+  <img src="https://img.youtube.com/vi/us6Efr1zF1U/maxresdefault.jpg" width="640" alt="VibeScan v1 Demo">
 </a>
 *Secret detection | Entropy analysis | Git hooks | HTML reports*
 
