@@ -4,61 +4,53 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org)
-[![GitHub Stars](https://img.shields.io/github/stars/tanikush/vibescan)](https://github.com/tanikush/vibescan/stargazers)
+[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/tanikush/vibescan/scan.yml)](.github/workflows/scan.yml)
 
 ---
 
 ## The Problem
 
-AI coding tools are everywhere in 2025. But 45% of AI-generated code contains security vulnerabilities (Veracode 2025) — and **existing scanners miss it**.
-
-| Stat | Source |
-|------|--------|
-| 45% of AI code has vulnerabilities | Veracode 2025 |
-| 2.74x more bugs than human-written code | Veracode 2025 |
-| 400+ exposed secrets in 1,400 vibe-coded apps | Escape.tech |
-
-**GitLeaks** scans for secrets. **TruffleHog** scans for secrets. Neither catches what VibeScan does.
+AI coding tools (Cursor, Claude, Copilot) generate code fast — but **45% of it has security vulnerabilities** (Veracode 2025). Existing scanners (GitLeaks, TruffleHog) scan for secrets only. They miss what VibeScan catches.
 
 ---
 
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                           VibeScan                                   │
-│              AI-Generated Code Security Scanner                     │
-└─────────────────────────────────────────────────────────────────────┘
-                                │
-        ┌───────────────────────┼───────────────────────┐
-        │                       │                       │
-┌───────▼───────┐       ┌───────▼───────┐       ┌───────▼───────┐
-│   INPUT       │       │  SCANNER      │       │   OUTPUT       │
-│               │       │               │       │                │
-│ Git repo      │─────►│ Layer 1:      │─────►│ Terminal       │
-│ Folder        │       │   Regex       │       │   Report       │
-│ File          │       │   (300+        │       │                │
-│ .env          │       │   patterns)   │       │ HTML Report    │
-└───────────────┘       │               │       │                │
-                        │ Layer 2:      │       │ JSON Export    │
-                        │   Shannon     │       │                │
-                        │   Entropy     │       │ Dashboard      │
-                        │               │       │ (0-100 score)  │
-                        │ Layer 3:      │       │                │
-                        │   AI Patterns │       │ PR Comment     │
-                        │               │       │ (GitHub Bot)   │
-                        └───────────────┘       └────────────────┘
+                     ┌──────────────────┐
+                     │   VibeScan       │
+                     │ CLI / Python     │
+                     └────────┬─────────┘
+                              │
+              ┌───────────────┼───────────────┐
+              │               │               │
+       ┌──────▼──────┐  ┌────▼─────┐  ┌──────▼──────┐
+       │   INPUT     │  │ SCANNER  │  │   OUTPUT     │
+       │             │  │          │  │              │
+       │ Files       │─►│ Regex    │─►│ Terminal     │
+       │ .env        │  │ 14 secret│  │ table        │
+       │ Git repo    │  │ patterns │  │              │
+       └─────────────┘  │          │  │ HTML report  │
+                        │ Shannon  │  │ (Jinja2)     │
+                        │ Entropy  │  │              │
+                        │          │  │ JSON export  │
+                        │ 22 AI    │  │              │
+                        │ patterns │  │ Dashboard    │
+                        │          │  │ (score +     │
+                        └──────────┘  │  grade)      │
+                                     │              │
+                                     └──────────────┘
 ```
 
 ---
 
 ## Features
 
-| | |
+| Feature | Status |
 |---|---|
-| 300+ secret patterns (AWS, OpenAI, GitHub, Stripe…) | ✅ |
+| 14 secret patterns (AWS, OpenAI, GitHub, Stripe, JWT, DB URLs…) | ✅ |
 | Shannon entropy detection (unknown tokens) | ✅ |
-| 16 AI-specific vulnerability patterns | ✅ |
+| 22 AI-specific vulnerability patterns | ✅ |
 | Live secret validation (GitHub + OpenAI tokens) | ✅ |
 | Auto-fix suggestions with safe code snippets | ✅ |
 | Git hooks (block push on CRITICAL) | ✅ |
@@ -82,7 +74,7 @@ vibescan scan .
 vibescan scan . -o report.html
 ```
 
-Output: `File | Line | Issue | Risk | Match`
+**Output:** `File | Line | Issue | Risk | Match` in a colorful Rich table.
 
 ---
 
@@ -91,25 +83,6 @@ Output: `File | Line | Issue | Risk | Match`
 | Terminal Output | HTML Report | Security Dashboard |
 |----------------|-------------|-------------------|
 | ![Terminal Output](screenshots/terminal_output.png) | ![HTML Report](screenshots/html_report.png) | ![Dashboard](screenshots/dashboard.png) |
-
----
-
-## How It Works
-
-```
-Input: Project files / .env / Git repo
-        │
-        ├─► Layer 1: Regex (300+ patterns)
-        │   AWS keys, OpenAI tokens, DB URLs, Stripe, JWT…
-        │
-        ├─► Layer 2: Shannon Entropy
-        │   H = -Σ(p × log₂(p)) — finds high-entropy unknown tokens
-        │   Score ≥ 4.5 = likely secret
-        │
-        └─► Layer 3: AI-Specific Patterns
-            SQL injection · eval() · debug mode · CORS wildcards
-            Missing auth · pickle.loads · Path traversal
-```
 
 ---
 
@@ -126,7 +99,7 @@ Input: Project files / .env / Git repo
 vibescan scan .
 
 # Scan specific folder
-vibescan scan C:\Users\TANISHA\Desktop\flask-devops-task
+vibescan scan path/to/your/project
 
 # HTML report
 vibescan scan . -o report.html
@@ -134,13 +107,13 @@ vibescan scan . -o report.html
 # Security dashboard (0-100 score + A-F grade)
 vibescan scan . -d dashboard.html
 
-# JSON export
+# JSON export (CI/CD integration)
 vibescan scan . -j results.json
 
 # Fast scan — secrets only, skip AI patterns
 vibescan scan . --no-vibe
 
-# Fail exit code 1 on CRITICAL (CI/CD)
+# Fail on critical (exit code 1 for CI/CD)
 vibescan scan . --fail-on-critical
 
 # Verify if detected secrets are live or revoked
@@ -152,10 +125,10 @@ vibescan scan . --validate
 ## Detected Issues
 
 ### Secrets
-AWS · OpenAI · GitHub · Google · JWT · Database URLs · Stripe · Slack · Private Keys · Generic API Keys
+AWS Access Key · AWS Secret Key · OpenAI API Key · GitHub Token / OAuth / PAT · Google API Key · JWT Token · Database URL (PostgreSQL / MongoDB / MySQL / Redis) · Generic API Key · Generic Password · Private Key · Stripe Secret / Test Key · Slack Token · Hardcoded `.env` values
 
 ### AI-Specific Vulnerabilities
-Missing authentication · SQL injection · Hardcoded credentials · Debug mode in production · CORS wildcard · `eval()` · `pickle.loads()` · Path traversal · Weak cryptography · YAML unsafe load · Prompt injection · Secrets logged to console
+Prompt injection · Unvalidated LLM input · Password / token logged · `subprocess` with `shell=True` · `os.system()` · Path traversal · `.env` served in route · Hardcoded admin credentials · Weak `random` module · `yaml.load()` · `pickle.loads()` · Missing rate limit on auth · Unvalidated file upload · Missing auth check · SQL injection via f-strings · Debug mode in production · CORS wildcard · Direct `.env` read · `eval()` usage
 
 ---
 
@@ -169,8 +142,8 @@ Missing authentication · SQL injection · Hardcoded credentials · Debug mode i
 | Missing auth detection | ❌ | ✅ |
 | SQL injection check | ❌ | ✅ |
 | Auto-fix suggestions | ❌ | ✅ |
-| GitHub Actions | ❌ | ✅ |
-| Security Dashboard | ❌ | ✅ |
+| GitHub Actions / PR bot | ❌ | ✅ |
+| Security dashboard | ❌ | ✅ |
 | Cost | Free | Free |
 
 ---
@@ -206,6 +179,4 @@ Pull requests are welcome. For major changes, open an issue first to discuss wha
 
 ## License
 
-MIT — see [LICENSE](LICENSE) for details.
-
-Free forever. No license fees. No cloud lock-in.
+MIT — see [LICENSE](LICENSE) for details. Free forever. No license fees. No cloud lock-in.
