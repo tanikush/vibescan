@@ -1,0 +1,2 @@
+# AWS Access Key - This will be detected as CRITICAL
+AWS_ACCESS_KEY = "AKIAIOSFODNN7ABCD1234"

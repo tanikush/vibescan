@@ -17,9 +17,9 @@ exclude_patterns:
   - '.env in Route'
 
 allowlist:
-  - 'AKIAIOSFODNN7EXAMPLE'  # AWS docs example
-  - 'sk-test-example-key'   # OpenAI docs example
-  - 'ghp_abcdefghij'        # Test token
+  - 'sk-test-example-key'   # Not a real key
+  - 'ghp_abcdefghij'        # Not a real token
+  - 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'  # Noisy high-entropy noise
   - 'subprocess.run(cmd, shell=True)'  # Example from fixer.py
   - 'yaml.load(content)'    # Example from fixer.py
   - 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'

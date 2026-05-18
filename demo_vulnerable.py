@@ -2,7 +2,7 @@
 # This file contains INTENTIONALLY vulnerable code for demonstration
 
 # CRITICAL: Hardcoded AWS credentials
-AWS_KEY = "AKIAIOSFODNN7EXAMPLE"
+AWS_KEY = "AKIAXYZWVPSNN7REALKEY12"
 
 # CRITICAL: Database URL with password
 DATABASE_URL = "postgresql://admin:secret123@localhost:5432/myapp"

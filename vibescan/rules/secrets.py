@@ -7,7 +7,7 @@ SECRET_PATTERNS = [
     ('AWS Secret Key', r'(?i)aws.{0,20}[\'"][0-9a-zA-Z/+]{40}[\'"]', 'CRITICAL'),
     
     # OpenAI
-    ('OpenAI API Key', r'sk-[a-zA-Z0-9]{48}', 'CRITICAL'),
+    ('OpenAI API Key', r'sk-[a-zA-Z0-9_-]{20,}', 'CRITICAL'),
     
     # GitHub
     ('GitHub Token', r'ghp_[a-zA-Z0-9]{36}', 'HIGH'),

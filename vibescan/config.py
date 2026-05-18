@@ -35,7 +35,7 @@ class VibeScanConfig:
         return name in self.cfg['exclude_patterns']
 
     def is_allowlisted(self, text: str) -> bool:
-        return any(a in text for a in self.cfg['allowlist'])
+        return text in self.cfg['allowlist']
 
     def is_in_baseline(self, fingerprint: str) -> bool:
         return fingerprint in self.baseline
