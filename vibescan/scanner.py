@@ -5,6 +5,7 @@ from typing import List, Dict, Any
 from .rules.secrets import SECRET_PATTERNS
 from .rules.vibe_patterns import VIBE_PATTERNS
 from .rules.entropy import find_high_entropy_strings
+from .rules.ai_risk_patterns import AI_RISK_PATTERNS
 
 SKIP_EXTENSIONS = {'.jpg', '.png', '.gif', '.svg', '.ico', '.pdf', '.zip', '.tar', '.gz', '.lock'}
 SKIP_DIRS = {'node_modules', '.git', 'venv', '__pycache__', 'dist', 'build', '.next'}
@@ -62,6 +63,7 @@ class VibeScan:
             if self.include_vibe:
                 self._apply_patterns(filepath, content, VIBE_PATTERNS)
             self._apply_entropy(filepath, content)
+            self._apply_patterns(filepath, content, AI_RISK_PATTERNS)
         except (PermissionError, OSError):
             pass
     

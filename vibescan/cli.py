@@ -8,6 +8,7 @@ from rich import box
 from .scanner import VibeScan
 from .reporter import generate_html_report
 from .team_report import generate_dashboard
+from .validator import verify_finding, ValidityStatus
 
 console = Console()
 
@@ -19,13 +20,12 @@ def cli():
 @cli.command()
 @click.argument('path', default='.')
 @click.option('--output', '-o', default=None, help='Save HTML report: -o report.html')
-@click.option('--dashboard', '-d',
-              default=None,
-              help='Generate dashboard HTML')
+@click.option('--dashboard', '-d', default=None, help='Generate dashboard HTML')
 @click.option('--json-out', '-j', default=None, help='Save JSON output: -j results.json')
 @click.option('--no-vibe', is_flag=True, help='Skip vibe patterns, scan secrets only')
 @click.option('--fail-on-critical', is_flag=True, help='Exit with code 1 if CRITICAL issues found (for CI/CD)')
-def scan(path, output, dashboard, json_out, no_vibe, fail_on_critical):
+@click.option('--validate', is_flag=True, help='Verify if detected secrets are LIVE or REVOKED')
+def scan(path, output, dashboard, json_out, no_vibe, fail_on_critical, validate):
     '''Scan folder or file for security issues'''
     
     console.print(Panel(
@@ -71,7 +71,14 @@ def scan(path, output, dashboard, json_out, no_vibe, fail_on_critical):
     console.print(f'Critical: [red]{summary["CRITICAL"]}[/]  '
                   f'High: [yellow]{summary["HIGH"]}[/]  '
                   f'Medium: [yellow]{summary["MEDIUM"]}[/]')
-    
+
+    if validate and findings:
+        console.print('\n[bold cyan]Validating detected secrets...[/]')
+        for f in findings:
+            status = verify_finding(f.pattern_name, f.matched_text)
+            status_color = '[red]' if status == ValidityStatus.LIVE else '[green]' if status == ValidityStatus.REVOKED else '[yellow]'
+            console.print(f'  {f.pattern_name}: {status_color}{status.value}[/]')
+
     if output:
         generate_html_report(findings, scanner, output)
         console.print(f'\n[green]OK Report saved:[/] {output}')
