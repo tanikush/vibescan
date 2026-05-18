@@ -26,6 +26,18 @@ def get_grade(score):
     return 'F'
 
 
+def get_exec_summary(score, summary):
+    """Generate executive summary based on score and findings"""
+    if score >= 90:
+        return "Excellent — code is in excellent security shape."
+    elif score >= 75:
+        return f"Good — {summary['HIGH']} high-risk issues need attention."
+    elif score >= 60:
+        return f"Fair — {summary['CRITICAL']} critical and {summary['HIGH']} high issues need fixing."
+    else:
+        return f"Poor — {summary['CRITICAL']} critical vulnerabilities. Do NOT deploy."
+
+
 def generate_dashboard(findings, scanner, output='dashboard.html'):
     score = calculate_score(findings)
     grade = get_grade(score)

@@ -3,9 +3,12 @@ name: VibeScan Security Check
 on:
   push:
     branches: [main, master, develop]
-
   pull_request:
     branches: [main, master]
+
+permissions:
+  pull-requests: write
+  issues: write
 
 jobs:
   security-scan:
@@ -24,7 +27,7 @@ jobs:
         run: pip install -e .
 
       - name: Run VibeScan
-        run: vibescan scan vibescan --output report.html
+        run: vibescan scan . --fail-on-critical --output report.html --json-out results.json
 
       - name: Upload Report
         uses: actions/upload-artifact@v4
@@ -32,3 +35,32 @@ jobs:
         with:
           name: vibescan-report
           path: report.html
+
+      - name: Post PR Comment
+        if: github.event_name == 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          python -c "
+          import json, os
+          from vibescan.pr_bot import build_comment, post_pr_comment
+          from vibescan.scanner import VibeScan
+          from pathlib import Path
+          
+          with open('results.json') as f:
+              findings_data = json.load(f)
+          
+          scanner = VibeScan('.')
+          scanner.findings = [type('F', (), d)() for d in findings_data]
+          for i, f in enumerate(scanner.findings):
+              f._replace = lambda **kw: None
+          
+          repo = os.getenv('GITHUB_REPOSITORY')
+          pr = int(os.getenv('PR_NUMBER', 0))
+          if pr:
+              comment = build_comment(scanner.findings, 0)
+              post_pr_comment(repo, pr, comment)
+          "
+        continue-on-error: true

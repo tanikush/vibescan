@@ -1,0 +1,23 @@
+exclude_paths:
+  - 'tests/'
+  - 'docs/'
+  - 'node_modules/'
+  - '.git/'
+  - 'fixtures/'
+  - 'examples/'
+
+exclude_patterns:
+  - 'Generic Password'
+
+allowlist:
+  - 'AKIAIOSFODNN7EXAMPLE'
+  - 'sk-test-example-key'
+
+entropy_threshold: 4.5
+
+baseline_file: '.vibescan_baseline.json'
+
+report_levels:
+  - CRITICAL
+  - HIGH
+  - MEDIUM
