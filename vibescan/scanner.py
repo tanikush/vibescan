@@ -8,7 +8,7 @@ from .rules.entropy import find_high_entropy_strings
 from .rules.ai_risk_patterns import AI_RISK_PATTERNS
 from .config import VibeScanConfig
 
-SKIP_EXTENSIONS = {'.jpg', '.png', '.gif', '.svg', '.ico', '.pdf', '.zip', '.tar', '.gz', '.lock', '.pyc', '.pyo'}
+SKIP_EXTENSIONS = {'.jpg', '.png', '.gif', '.svg', '.ico', '.pdf', '.zip', '.tar', '.gz', '.lock', '.pyc', '.pyo', '.yml', '.yaml'}
 SKIP_DIRS = {'node_modules', '.git', 'venv', '__pycache__', 'dist', 'build', '.next', '.eggs', 'vibescan.egg-info'}
 
 class Finding:
@@ -103,6 +103,9 @@ class VibeScan:
         for secret, score in find_high_entropy_strings(content):
             lines = content.split('\n')
             for i, line in enumerate(lines, 1):
+                stripped = line.strip()
+                if stripped.startswith('#') or stripped.startswith('//'):
+                    continue
                 if secret in line:
                     self.findings.append(Finding(
                         filepath, i,
