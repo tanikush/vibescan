@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='vibescan',
+    name='vibescan-ai',
     version='1.0.0',
     description='Security scanner for AI-generated (vibe-coded) code',
     author='Tanisha Kushwah',
