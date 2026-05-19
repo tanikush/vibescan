@@ -16,10 +16,7 @@ AI coding tools (Cursor, Claude, Copilot) generate code fast — but **45% of it
 
 ## Architecture
 
-
 <img width="1536" height="1024" alt="Structure" src="https://github.com/user-attachments/assets/aac838a9-ea18-4ade-81a0-ee3984858b7a" />
-
-
 
 ---
 
