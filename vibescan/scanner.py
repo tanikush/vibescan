@@ -83,22 +83,21 @@ class VibeScan:
         for pattern_data in patterns:
             pattern_name, regex, risk = pattern_data[:3]
             description = pattern_data[3] if len(pattern_data) > 3 else ''
-            
-            # Skip excluded patterns
             if self.config.should_skip_pattern(pattern_name):
                 continue
-            
             for line_no, line in enumerate(lines, 1):
-                            match = re.search(regex, line)
-                            if match:
-                                matched_text = match.group()
-                                # Skip allowlisted
-                                if self.config.is_allowlisted(matched_text):
-                                    continue
-                                self.findings.append(Finding(
-                                    filepath, line_no, pattern_name,
-                                        matched_text, risk, description
-                            ))
+                stripped = line.strip()
+                if stripped.startswith('#') or stripped.startswith('//'):
+                    continue
+                match = re.search(regex, line)
+                if match:
+                    matched_text = match.group()
+                    if self.config.is_allowlisted(matched_text):
+                        continue
+                    self.findings.append(Finding(
+                        filepath, line_no, pattern_name,
+                        matched_text, risk, description
+                    ))
     
     def _apply_entropy(self, filepath, content):
         for secret, score in find_high_entropy_strings(content):
