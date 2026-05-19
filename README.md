@@ -44,7 +44,7 @@ AI coding tools (Cursor, Claude, Copilot) generate code fast — but **45% of it
 
 ```powershell
 # Install — one time
-pip install vibescan
+pip install vibescan-ai
 
 # Scan any project
 vibescan scan .
