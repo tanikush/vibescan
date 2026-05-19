@@ -1,3 +1,16 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
 # VibeScan
 
 > **Security scanner for AI-generated (vibe-coded) code**
