@@ -16,31 +16,10 @@ AI coding tools (Cursor, Claude, Copilot) generate code fast — but **45% of it
 
 ## Architecture
 
-```
-                     ┌──────────────────┐
-                     │   VibeScan       │
-                     │ CLI / Python     │
-                     └────────┬─────────┘
-                              │
-              ┌───────────────┼───────────────┐
-              │               │               │
-       ┌──────▼──────┐  ┌────▼─────┐  ┌──────▼──────┐
-       │   INPUT     │  │ SCANNER  │  │   OUTPUT     │
-       │             │  │          │  │              │
-       │ Files       │─►│ Regex    │─►│ Terminal     │
-       │ .env        │  │ 14 secret│  │ table        │
-       │ Git repo    │  │ patterns │  │              │
-       └─────────────┘  │          │  │ HTML report  │
-                        │ Shannon  │  │ (Jinja2)     │
-                        │ Entropy  │  │              │
-                        │          │  │ JSON export  │
-                        │ 22 AI    │  │              │
-                        │ patterns │  │ Dashboard    │
-                        │          │  │ (score +     │
-                        └──────────┘  │  grade)      │
-                                     │              │
-                                     └──────────────┘
-```
+
+<img width="1536" height="1024" alt="Structure" src="https://github.com/user-attachments/assets/aac838a9-ea18-4ade-81a0-ee3984858b7a" />
+
+
 
 ---
 
@@ -78,13 +57,15 @@ vibescan scan . -o report.html
 
 ---
 
-## Screenshots
+## 📸 Screenshots
 
-| Terminal Output | HTML Report | Security Dashboard |
-|----------------|-------------|-------------------|
-| ![Terminal Output](screenshots/terminal_output.png) | ![HTML Report](screenshots/html_report.png) | ![Dashboard](screenshots/dashboard.png) |
+| Feature | Image |
+|--------|-------|
+| Terminal Output | <img src="screenshots/terminal_output.png" width="400"/> |
+| HTML Report | <img src="screenshots/html_report.png" width="400"/> |
+| Security Dashboard | <img src="screenshots/dashboard.png" width="400"/> |
 
----
+
 
 ## Demo
 
