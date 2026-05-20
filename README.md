@@ -22,36 +22,8 @@ AI coding tools (Cursor, Claude, Copilot) generate code fast — but **45% of it
 
 ## How It Works
 
-```
-Input Files
-    │
-    ▼
-┌─────────────────────────┐
-│     VibeScan Core       │
-│  ┌───────────────────┐  │
-│  │  Secret Patterns  │◄─ 14 regex rules (AWS, OpenAI, GitHub, Stripe, JWT…)
-│  │  Entropy Module   │◄─ Shannon entropy to find unknown/high-entropy tokens
-│  │  AI Risk Patterns │◄─ 22 patterns specific to AI coding mistakes
-│  │  Config Engine    │◄─ allowlist, baseline, path excludes from .vibescan.yml
-│  └────────┬──────────┘  │
-│           │             │
-│  ┌────────▼──────────┐  │
-│  │   Finding Engine  │  │
-│  │  • Deduplicate    │  │
-│  │  • Risk classify  │  │
-│  │  • Context filter │◄─ Skips comment lines, respects allowlist
-│  └────────┬──────────┘  │
-└───────────┼────────────┘
-            │
-   ┌────────┼──────────┐
-   ▼        ▼          ▼
-Rich Table  HTML   JSON
-(terminal) Report  (CI/CD)
-   │
-   ▼
-Dashboard
-(0–100 score, A–F grade)
-```
+<img width="1190" height="1322" alt="image" src="https://github.com/user-attachments/assets/11e6db24-4ea8-455c-9ded-6ff4e1171a7c" />
+
 
 1. **Pattern matching** — 14 secret regex rules + 22 AI-specific vulnerability rules run against every code file
 2. **Entropy analysis** — Shannon entropy on every line flags high-entropy strings that look like secrets but don't match any known pattern
