@@ -10,7 +10,7 @@
 
 ## The Problem
 
-AI coding tools (Cursor, Claude, Copilot) generate code fast — but **45% of it has security vulnerabilities** ([Veracode State of Software Security 2025](https://www.veracode.com/resources/analyst-reports/2025-genai-code-security-report/)). Traditional secret scanners like GitLeaks and TruffleHog focus on credential leaks. VibeScan is built specifically to detect insecure coding patterns commonly introduced by AI coding tools.
+AI coding tools (Cursor, Claude, Copilot) generate code fast — but **45% of it has security vulnerabilities** ([Veracode 2025 GenAI Code Security Report](https://www.veracode.com/resources/analyst-reports/2025-genai-code-security-report/)). Traditional secret scanners like GitLeaks and TruffleHog focus on credential leaks. VibeScan is built specifically to detect insecure coding patterns commonly introduced by AI coding tools.
 
 ---
 
