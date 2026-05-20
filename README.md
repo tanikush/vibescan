@@ -1,6 +1,6 @@
 # VibeScan
 
-> **Security scanner for AI-generated (vibe-coded) code**
+> **AI-generated code auditor — catches what traditional scanners miss**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org)
@@ -10,7 +10,7 @@
 
 ## The Problem
 
-AI coding tools (Cursor, Claude, Copilot) generate code fast — but **45% of it has security vulnerabilities** (Veracode 2025). Existing scanners (GitLeaks, TruffleHog) scan for secrets only. They miss what VibeScan catches.
+AI coding tools (Cursor, Claude, Copilot) generate code fast — but **45% of it has security vulnerabilities** ([Veracode State of Software Security 2025](https://www.veracode.com/resources/state-of-software-security)). Traditional secret scanners like GitLeaks and TruffleHog focus on credential leaks. VibeScan is built specifically to detect insecure coding patterns commonly introduced by AI coding tools.
 
 ---
 
@@ -20,7 +20,46 @@ AI coding tools (Cursor, Claude, Copilot) generate code fast — but **45% of it
 
 ---
 
-## Features
+## How It Works
+
+```
+Input Files
+    │
+    ▼
+┌─────────────────────────┐
+│     VibeScan Core       │
+│  ┌───────────────────┐  │
+│  │  Secret Patterns  │◄─ 14 regex rules (AWS, OpenAI, GitHub, Stripe, JWT…)
+│  │  Entropy Module   │◄─ Shannon entropy to find unknown/high-entropy tokens
+│  │  AI Risk Patterns │◄─ 22 patterns specific to AI coding mistakes
+│  │  Config Engine    │◄─ allowlist, baseline, path excludes from .vibescan.yml
+│  └────────┬──────────┘  │
+│           │             │
+│  ┌────────▼──────────┐  │
+│  │   Finding Engine  │  │
+│  │  • Deduplicate    │  │
+│  │  • Risk classify  │  │
+│  │  • Context filter │◄─ Skips comment lines, respects allowlist
+│  └────────┬──────────┘  │
+└───────────┼────────────┘
+            │
+   ┌────────┼──────────┐
+   ▼        ▼          ▼
+Rich Table  HTML   JSON
+(terminal) Report  (CI/CD)
+   │
+   ▼
+Dashboard
+(0–100 score, A–F grade)
+```
+
+1. **Pattern matching** — 14 secret regex rules + 22 AI-specific vulnerability rules run against every code file
+2. **Entropy analysis** — Shannon entropy on every line flags high-entropy strings that look like secrets but don't match any known pattern
+3. **Context filtering** — comment lines are skipped (no false positives on `# eval()` documentation), allowlist respected
+4. **Risk scoring** — each finding is classified CRITICAL / HIGH / MEDIUM and aggregated into a 0–100 security score with an A–F grade
+5. **Output** — Rich terminal table, HTML report, JSON for CI/CD, or interactive dashboard
+
+---
 
 | Feature | Status |
 |---|---|
@@ -110,19 +149,21 @@ Prompt injection · Unvalidated LLM input · Password / token logged · `subproc
 
 ---
 
-## Why VibeScan Over GitLeaks?
+## How VibeScan Compares to Traditional Scanners
 
-| Feature | GitLeaks | VibeScan |
-|---------|----------|----------|
-| Secret detection | ✅ | ✅ |
-| Entropy analysis | ❌ | ✅ |
-| AI-specific patterns | ❌ | ✅ |
-| Missing auth detection | ❌ | ✅ |
+| Feature | GitLeaks / TruffleHog | VibeScan |
+|---------|----------------------|----------|
+| Secret / credential leak detection | ✅ | ✅ |
+| Shannon entropy analysis | ❌ | ✅ |
+| AI-specific vulnerability patterns | ❌ | ✅ |
+| Missing authentication detection | ❌ | ✅ |
 | SQL injection check | ❌ | ✅ |
 | Auto-fix suggestions | ❌ | ✅ |
 | GitHub Actions / PR bot | ❌ | ✅ |
-| Security dashboard | ❌ | ✅ |
+| Security dashboard (0–100 score) | ❌ | ✅ |
 | Cost | Free | Free |
+
+Traditional tools were built for human-authored code and primarily surface credential leaks. VibeScan focuses on a different class of problems — the insecure coding patterns that AI assistants (Cursor, Claude, Copilot) commonly introduce: missing auth checks, unsafe `eval()`, shell injection via `shell=True`, and debug mode left enabled in production. These patterns aren't secrets, but they're still critical vulnerabilities that general-purpose scanners don't look for.
 
 ---
 
