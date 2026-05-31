@@ -10,7 +10,7 @@
 
 ## The Problems
 
-AI coding tools (Cursor, Claude, Copilot) generate code fast — but **45% of it has security vulnerabilities** ([Veracode 2025 GenAI Code Security Report](https://www.veracode.com/resources/analyst-reports/2025-genai-code-security-report/)). Traditional secret scanners like GitLeaks and TruffleHog focus on credential leaks. VibeScan is built specifically to detect insecure coding patterns commonly introduced by AI coding tools.
+AI coding tools (Cursor, Claude, Copilot) generate code fasts — but **45% of it has security vulnerabilities** ([Veracode 2025 GenAI Code Security Report](https://www.veracode.com/resources/analyst-reports/2025-genai-code-security-report/)). Traditional secret scanners like GitLeaks and TruffleHog focus on credential leaks. VibeScan is built specifically to detect insecure coding patterns commonly introduced by AI coding tools.
 
 ---
 
@@ -43,7 +43,7 @@ AI coding tools (Cursor, Claude, Copilot) generate code fast — but **45% of it
 | Git hooks (block push on CRITICAL) | ✅ |
 | GitHub Actions PR bot | ✅ |
 | HTML report + Security dashboard (0–100 score, A–F grade) | ✅ |
-| Config file with allowlist & baseline | ✅ |
+| Config files with allowlist & baseline | ✅ |
 | Zero cost · Works offline · MIT license | ✅ |
 
 ---
@@ -117,7 +117,7 @@ vibescan scan . --validate
 AWS Access Key · AWS Secret Key · OpenAI API Key · GitHub Token / OAuth / PAT · Google API Key · JWT Token · Database URL (PostgreSQL / MongoDB / MySQL / Redis) · Generic API Key · Generic Password · Private Key · Stripe Secret / Test Key · Slack Token · Hardcoded `.env` values
 
 ### AI-Specific Vulnerabilities
-Prompt injection · Unvalidated LLM input · Password / token logged · `subprocess` with `shell=True` · `os.system()` · Path traversal · `.env` served in route · Hardcoded admin credentials · Weak `random` module · `yaml.load()` · `pickle.loads()` · Missing rate limit on auth · Unvalidated file upload · Missing auth check · SQL injection via f-strings · Debug mode in production · CORS wildcard · Direct `.env` read · `eval()` usage
+Prompt injection · Unvalidated LLM input · Password / tokens logged · `subprocess` with `shell=True` · `os.system()` · Path traversal · `.env` served in route · Hardcoded admin credentials · Weak `random` module · `yaml.load()` · `pickle.loads()` · Missing rates limit on auth · Unvalidated file upload · Missing auth check · SQL injection via f-strings · Debug mode in production · CORS wildcard · Direct `.env` read · `eval()` usage
 
 ---
 
@@ -158,7 +158,7 @@ pip install -e .
 
 ## Contributing
 
-Pull requests are welcome. For major changes, open an issue first to discuss what you would like to change.
+Pull requests are welcome. For majors changes, open an issue first to discuss what you would like to change.
 
 1. Fork it
 2. Create your feature branch (`git checkout -b feature/my-change`)
