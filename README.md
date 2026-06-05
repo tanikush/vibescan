@@ -130,7 +130,7 @@ Prompt injection · Unvalidated LLM input · Password / tokens logged · `subpro
 | AI-specific vulnerability patterns | ❌ | ✅ |
 | Missing authentication detection | ❌ | ✅ |
 | SQL injection check | ❌ | ✅ |
-| Auto-fix suggestions | ❌ | ✅ |
+| Auto-fixes suggestions | ❌ | ✅ |
 | GitHub Actions / PR bot | ❌ | ✅ |
 | Security dashboard (0–100 score) | ❌ | ✅ |
 | Cost | Free | Free |
@@ -139,7 +139,7 @@ Traditional tools were built for human-authored code and primarily surface crede
 
 ---
 
-## Tech Stack
+## Tech Stacks
 
 Python · Click · Rich · Jinja2 · Regex · Shannon Entropy · GitHub Actions
 
