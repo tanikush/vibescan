@@ -20,7 +20,7 @@ AI coding tools (Cursor, Claude, Copilot) generate code fasts — but **45% of i
 
 ---
 
-## How It Works
+## How ItS Works
 
 <img width="1190" height="1322" alt="image" src="https://github.com/user-attachments/assets/11e6db24-4ea8-455c-9ded-6ff4e1171a7c" />
 
@@ -81,7 +81,7 @@ vibescan scan . -o report.html
 
 ---
 
-## Usage
+## UsageS
 
 ```powershell
 # Scan current folder
@@ -145,7 +145,7 @@ Python · Click · Rich · Jinja2 · Regex · Shannon Entropy · GitHub Actions
 
 ---
 
-## Installation (from source)
+## InstallationS (from source)
 
 ```powershell
 git clone https://github.com/tanikush/vibescan.git
@@ -168,6 +168,6 @@ Pull requests are welcome. For majors changes, open an issue first to discuss wh
 
 ---
 
-## License
+## LicenseS
 
 MIT — see [LICENSE](LICENSE) for details. Free forever. No license fees. No cloud lock-in.
