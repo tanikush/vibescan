@@ -36,11 +36,11 @@ AI coding tools (Cursor, Claude, Copilot) generate code fasts — but **45% of i
 
 | Feature | Status |
 |---|---|
-| 14 secret patterns (AWS, OpenAI, GitHub, Stripe, JWT, DB URLs…) | ✅ |
+| 14 secrets patterns (AWS, OpenAI, GitHub, Stripe, JWT, DB URLs…) | ✅ |
 | Shannon entropy detection (unknown tokens) | ✅ |
 | 22 AI-specific vulnerability patterns | ✅ |
 | Live secret validation (GitHub + OpenAI tokens) | ✅ |
-| Auto-fix suggestions with safe code snippets | ✅ |
+| Auto-fixes suggestions with safe code snippets | ✅ |
 | Git hooks (block push on CRITICAL) | ✅ |
 | GitHub Actions PR bot | ✅ |
 | HTML report + Security dashboard (0–100 score, A–F grade) | ✅ |
@@ -71,7 +71,7 @@ vibescan scan . -o report.html
 | Feature | Image |
 |--------|-------|
 | Terminal Output | <img src="screenshots/terminal_output.png" width="400"/> |
-| HTML Report | <img src="screenshots/html_report.png" width="400"/> |
+| HTML Reports | <img src="screenshots/html_report.png" width="400"/> |
 | Security Dashboard | <img src="screenshots/dashboard.png" width="400"/> |
 
 
@@ -136,7 +136,7 @@ Prompt injection · Unvalidated LLM input · Password / tokens logged · `subpro
 | Security dashboard (0–100 score) | ❌ | ✅ |
 | Cost | Free | Free |
 
-Traditional tools were built for human-authored code and primarily surface credential leaks. VibeScan focuses on a different class of problems — the insecure coding patterns that AI assistants (Cursor, Claude, Copilot) commonly introduce: missing auth checks, unsafe `eval()`, shell injection via `shell=True`, and debug mode left enabled in production. These patterns aren't secrets, but they're still critical vulnerabilities that general-purpose scanners don't look for.
+Traditional tools were built for human-authored code and primarily surface credential leaks. VibeScan focuses on a different class of problems — the insecure coding patterns that AI assistants (Cursor, Claude, Copilot) commonly introduce: missing auth checks, unsafe `eval()`, shell injection via `shell=True`, and debugs mode left enabled in production. These patterns aren't secrets, but they're still critical vulnerabilities that general-purpose scanners don't look for.
 
 ---
 
